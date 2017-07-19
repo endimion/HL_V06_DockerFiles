@@ -1,0 +1,32 @@
+version: '2'
+services:
+  #require that the hl network has been built first
+
+  mongo:
+    image: mongo:latest
+    container_name: "mongodb"
+    environment:
+      - MONGO_DATA_DIR=/data/db
+      - MONGO_LOG_DIR=/dev/null
+    volumes:
+      - ./data/db:/data/db
+    ports:
+        - 27017:27017
+    networks:
+      - dockercompose_hl_network
+    command: mongod --smallfiles --logpath=/dev/null # --quiet
+
+  monitor:
+    image: endimion13/dipsup-mon-app
+    environment:
+      - CHAINCODE_ID=0df661192a330f3632545b12bab303b5df34857137bbcd501201c6b70509044d
+    links:
+      - mongo
+    networks:
+      - dockercompose_hl_network
+    external_links:
+      - membersrvc
+      - vp
+networks:
+  dockercompose_hl_network:
+    external: true
