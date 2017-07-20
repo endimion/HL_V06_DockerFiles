@@ -25,6 +25,14 @@ services:
     networks:
       #- default
       - bridge
+    deploy:
+      mode: replicated
+      replicas: 1
+      labels: [APP=HLF]
+      placement:
+        constraints: [node.role == worker]
+
+
 
   vp0:
     image: ibmblockchain/fabric-peer:${ARCH_TAG}
@@ -55,6 +63,12 @@ services:
     networks:
       #- default
       - bridge
+    deploy:
+      mode: replicated
+      replicas: 1
+      labels: [APP=HLF]
+      placement:
+        constraints: [node.role == manager]
 
   vp1:
     image: ibmblockchain/fabric-peer:${ARCH_TAG}
@@ -87,6 +101,13 @@ services:
     networks:
       #- default
       - bridge
+    deploy:
+      mode: replicated
+      replicas: 1
+      labels: [APP=HLF]
+      placement:
+        constraints: [node.role == worker]
+
 
 networks:
   bridge:
