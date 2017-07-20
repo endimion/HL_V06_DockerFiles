@@ -30,7 +30,7 @@ services:
       replicas: 1
       labels: [APP=MBRSRV]
       placement:
-        constraints: [node.id == rmhh5xwrjil65lgrva7yvvtrj]
+        constraints: constraints: [node.role == worker]
 
 
 
@@ -106,7 +106,7 @@ services:
       replicas: 1
       labels: [APP=VP1]
       placement:
-        constraints: [node.id == rmhh5xwrjil65lgrva7yvvtrj]
+        constraints: [node.role == worker]
 
   visualizer:
     image: dockersamples/visualizer:stable
