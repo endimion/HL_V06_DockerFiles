@@ -29,8 +29,8 @@ services:
       mode: replicated
       replicas: 1
       labels: [APP=MBRSRV]
-      placement:
-        constraints: [node.role == worker]
+      #placement:
+      #  constraints: [node.role == worker]
 
 
 
@@ -105,8 +105,8 @@ services:
       mode: replicated
       replicas: 1
       labels: [APP=VP1]
-      placement:
-        constraints: [node.role == worker]
+      #placement:
+      #  constraints: [node.role == worker]
 
   visualizer:
     image: dockersamples/visualizer:stable
