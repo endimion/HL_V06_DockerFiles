@@ -108,6 +108,20 @@ services:
       placement:
         constraints: [node.id == rmhh5xwrjil65lgrva7yvvtrj]
 
+  visualizer:
+    image: dockersamples/visualizer:stable
+    ports:
+      - "8080:8080"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+    networks:
+      - bridge
+
+
+
 
 networks:
   bridge:
