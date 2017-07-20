@@ -31,8 +31,8 @@ services:
       labels: [APP=MBRSRV]
       #placement:
       #  constraints: [node.role == worker]
-    restart_policy:
-        condition: on-failure
+      restart_policy:
+          condition: on-failure
 
 
   vp0:
@@ -70,8 +70,8 @@ services:
       labels: [APP=VP0]
       placement:
         constraints: [node.role == manager]
-    restart_policy:
-        condition: on-failure
+      restart_policy:
+          condition: on-failure
 
   vp1:
     image: ibmblockchain/fabric-peer:${ARCH_TAG}
@@ -110,8 +110,8 @@ services:
       labels: [APP=VP1]
       #placement:
       #  constraints: [node.role == worker]
-    restart_policy:
-        condition: on-failure
+      restart_policy:
+          condition: on-failure
 
   visualizer:
     image: dockersamples/visualizer:stable
