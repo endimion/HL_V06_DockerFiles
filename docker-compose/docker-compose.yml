@@ -23,8 +23,8 @@ services:
       - MEMBERSRVC_CA_LOGGING_TLSCA=INFO
       - MEMBERSRVC_CA_ACA_ENABLED=true
     networks:
-      #- default
-      - bridge
+      - default
+      - hl_network
 
   vp0:
     image: ibmblockchain/fabric-peer:${ARCH_TAG}
@@ -53,8 +53,8 @@ services:
     links:
       - membersrvc
     networks:
-      #- default
-      - bridge
+      - default
+      - hl_network
 
   vp1:
     image: ibmblockchain/fabric-peer:${ARCH_TAG}
@@ -85,10 +85,9 @@ services:
       - membersrvc
       - vp0
     networks:
-      #- default
-      - bridge
+      - default
+      - hl_network
 
 networks:
-  bridge:
-    external:
-      name: bridge
+  hl_network:
+    driver: bridge
