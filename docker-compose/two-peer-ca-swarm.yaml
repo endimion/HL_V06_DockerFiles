@@ -30,7 +30,7 @@ services:
       replicas: 1
       labels: [APP=MBRSRV]
       placement:
-        constraints: constraints: [node.role == worker]
+        constraints: [node.role == worker]
 
 
 
