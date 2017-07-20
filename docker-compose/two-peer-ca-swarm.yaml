@@ -26,11 +26,10 @@ services:
       #- default
       - bridge
     deploy:
-      mode: replicated
-      replicas: 1
-      labels: [APP=MBRSRV]
-      #placement:
-      #  constraints: [node.role == worker]
+      # mode: replicated
+      # replicas: 1
+      placement:
+       constraints: [node.role == manager]
       restart_policy:
           condition: on-failure
 
@@ -65,9 +64,8 @@ services:
       #- default
       - bridge
     deploy:
-      mode: replicated
-      replicas: 1
-      labels: [APP=VP0]
+      # mode: replicated
+      # replicas: 1
       placement:
         constraints: [node.role == manager]
       restart_policy:
@@ -105,11 +103,10 @@ services:
       #- default
       - bridge
     deploy:
-      mode: replicated
-      replicas: 1
-      labels: [APP=VP1]
-      #placement:
-      #  constraints: [node.role == worker]
+      # mode: replicated
+      # replicas: 1
+      placement:
+       constraints: [node.role == worker]
       restart_policy:
           condition: on-failure
 
@@ -121,7 +118,7 @@ services:
       - "/var/run/docker.sock:/var/run/docker.sock"
     deploy:
       placement:
-        constraints: [node.role == manager]
+        constraints: [node.role == worker]
     networks:
       - bridge
 
