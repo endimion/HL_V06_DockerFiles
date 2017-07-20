@@ -26,9 +26,9 @@ services:
       - MEMBERSRVC_CA_LOGGING_TCAA=INFO
       - MEMBERSRVC_CA_LOGGING_TLSCA=INFO
       - MEMBERSRVC_CA_ACA_ENABLED=true
-    # networks:
-    #   #- default
-    #   - bridge
+    networks:
+      #- default
+      - bridge
     deploy:
       mode: replicated
       replicas: 1
@@ -68,9 +68,9 @@ services:
       - CORE_SECURITY_ENROLLSECRET=MwYpmSRjupbT
     depends_on:
       - membersrvc
-    # networks:
-    #   #- default
-    #   - bridge
+    networks:
+      #- default
+      - bridge
     deploy:
       mode: replicated
       replicas: 1
@@ -111,9 +111,9 @@ services:
     depends_on:
       - membersrvc
       - vp0
-    # networks:
-    #   #- default
-    #   - bridge
+    networks:
+      #- default
+      - bridge
     deploy:
       mode: replicated
       replicas: 1
@@ -128,16 +128,16 @@ services:
       - "8080:8080"
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock"
-    # deploy:
-    #   placement:
-    #     constraints: [node.role == manager]
-    # networks:
-    #   - bridge
+    deploy:
+      placement:
+        constraints: [node.role == worker]
+    networks:
+      - bridge
 
 
 
 
-# networks:
-#   bridge:
-#     external:
-#       name: bridge
+networks:
+  bridge:
+    external:
+      name: bridge
