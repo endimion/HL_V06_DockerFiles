@@ -31,7 +31,8 @@ services:
       labels: [APP=MBRSRV]
       #placement:
       #  constraints: [node.role == worker]
-
+    restart_policy:
+        condition: on-failure
 
 
   vp0:
@@ -58,7 +59,7 @@ services:
       - CORE_PEER_ID=vp0
       - CORE_SECURITY_ENROLLID=test_vp0
       - CORE_SECURITY_ENROLLSECRET=MwYpmSRjupbT
-    links:
+    depends_on:
       - membersrvc
     networks:
       #- default
@@ -69,6 +70,8 @@ services:
       labels: [APP=VP0]
       placement:
         constraints: [node.role == manager]
+    restart_policy:
+        condition: on-failure
 
   vp1:
     image: ibmblockchain/fabric-peer:${ARCH_TAG}
@@ -95,7 +98,7 @@ services:
       - CORE_PEER_ID=vp1
       - CORE_SECURITY_ENROLLID=test_vp1
       - CORE_SECURITY_ENROLLSECRET=5wgHK9qqYaPy
-    links:
+    depends_on:
       - membersrvc
       - vp0
     networks:
@@ -107,6 +110,8 @@ services:
       labels: [APP=VP1]
       #placement:
       #  constraints: [node.role == worker]
+    restart_policy:
+        condition: on-failure
 
   visualizer:
     image: dockersamples/visualizer:stable
