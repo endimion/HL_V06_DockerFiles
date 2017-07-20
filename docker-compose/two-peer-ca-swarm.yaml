@@ -30,7 +30,7 @@ services:
       replicas: 1
       labels: [APP=MBRSRV]
       placement:
-        constraints: [node.role == worker]
+        constraints: [node.id == rmhh5xwrjil65lgrva7yvvtrj]
 
 
 
@@ -106,7 +106,7 @@ services:
       replicas: 1
       labels: [APP=VP1]
       placement:
-        constraints: [node.role == worker]
+        constraints: [node.id == rmhh5xwrjil65lgrva7yvvtrj]
 
 
 networks:
