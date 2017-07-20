@@ -3,7 +3,9 @@ services:
   baseimage:
     build: ./baseimage
     image: hyperledger/fabric-baseimage:latest
-
+    deploy:
+      restart_policy:
+          condition: never
   membersrvc:
     image: ibmblockchain/fabric-membersrvc:${ARCH_TAG}
     ports:
