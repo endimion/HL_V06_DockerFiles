@@ -43,8 +43,11 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
-      - CORE_PEER_DISCOVERY_PERIOD=300s
-      - CORE_PEER_DISCOVERY_TOUCHPERIOD=301s
+      - CORE_PEER_ID=vp0
+      - CORE_SECURITY_ENROLLID=test_vp0
+      - CORE_SECURITY_ENROLLSECRET=MwYpmSRjupbT
+      - CORE_PEER_DISCOVERY_PERIOD=60s
+      - CORE_PEER_DISCOVERY_TOUCHPERIOD=61s
       - CORE_PEER_ADDRESSAUTODETECT=true
       - CORE_VM_ENDPOINT=unix:///var/run/docker.sock
       - CORE_LOGGING_LEVEL=DEBUG
@@ -62,10 +65,6 @@ services:
       - "7050:7050"
       - "7051:7051"
       - "7053:7053"
-    environment:
-      - CORE_PEER_ID=vp0
-      - CORE_SECURITY_ENROLLID=test_vp0
-      - CORE_SECURITY_ENROLLSECRET=MwYpmSRjupbT
     depends_on:
       - membersrvc
     networks:
@@ -84,8 +83,12 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
-      - CORE_PEER_DISCOVERY_PERIOD=300s
-      - CORE_PEER_DISCOVERY_TOUCHPERIOD=301s
+      - CORE_PEER_DISCOVERY_ROOTNODE=vp0:7051
+      - CORE_PEER_ID=vp1
+      - CORE_SECURITY_ENROLLID=test_vp1
+      - CORE_SECURITY_ENROLLSECRET=5wgHK9qqYaPy
+      - CORE_PEER_DISCOVERY_PERIOD=60s
+      - CORE_PEER_DISCOVERY_TOUCHPERIOD=61s
       - CORE_PEER_ADDRESSAUTODETECT=true
       - CORE_VM_ENDPOINT=unix:///var/run/docker.sock
       - CORE_LOGGING_LEVEL=DEBUG
@@ -103,11 +106,6 @@ services:
       - "8050:7050"
       - "8051:7051"
       - "8053:7053"
-    environment:
-      - CORE_PEER_DISCOVERY_ROOTNODE=vp0:7051
-      - CORE_PEER_ID=vp1
-      - CORE_SECURITY_ENROLLID=test_vp1
-      - CORE_SECURITY_ENROLLSECRET=5wgHK9qqYaPy
     depends_on:
       - membersrvc
       - vp0
