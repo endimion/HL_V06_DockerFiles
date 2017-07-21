@@ -3,8 +3,4 @@ services:
   baseimage:
     build: ./baseimage
     image: hyperledger/fabric-baseimage:latest
-     
-networks:
-  bridge:
-    external:
-      name: bridge
+ 
