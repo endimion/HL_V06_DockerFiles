@@ -58,7 +58,6 @@ services:
       - CORE_PEER_VALIDATOR_CONSENSUS_PLUGIN=pbft
       - CORE_PBFT_GENERAL_MODE=batch
       - CORE_PBFT_GENERAL_N=2
-      - CORE_SECURITY_ENABLED=true
       - CORE_SECURITY_ATTRIBUTES_ENABLED=true
     command: sh -c "sleep 25; peer node start"
     ports:
@@ -99,7 +98,6 @@ services:
       - CORE_PEER_VALIDATOR_CONSENSUS_PLUGIN=pbft
       - CORE_PBFT_GENERAL_MODE=batch
       - CORE_PBFT_GENERAL_N=2
-      - CORE_SECURITY_ENABLED=true
       - CORE_SECURITY_ATTRIBUTES_ENABLED=true
     command: sh -c "sleep 25; peer node start"
     ports:
