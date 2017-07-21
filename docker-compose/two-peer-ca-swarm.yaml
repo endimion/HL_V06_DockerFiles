@@ -59,7 +59,7 @@ services:
       - CORE_PEER_ID=vp0
       - CORE_SECURITY_ENROLLID=test_vp0
       - CORE_SECURITY_ENROLLSECRET=MwYpmSRjupbT
-    command: sh -c "sleep 25; peer node start"
+    command: sh -c "sleep 60; peer node start"
     ports:
       - "7050:7050"
       - "7051:7051"
@@ -99,7 +99,7 @@ services:
       - CORE_PEER_DISCOVERY_ROOTNODE=vp0:7051
       - CORE_PEER_ID=vp1
       - CORE_SECURITY_ENROLLID=test_vp1
-    command: sh -c "sleep 25; peer node start"
+    command: sh -c "sleep 60; peer node start"
     ports:
       - "8050:7050"
       - "8051:7051"
