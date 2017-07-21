@@ -1,0 +1,15 @@
+version: '3'
+services:
+  baseimage:
+    build: ./baseimage
+    image: hyperledger/fabric-baseimage:latest
+    deploy:
+      mode: replicated
+      replicas: 1
+      restart_policy:
+          condition: none
+  
+networks:
+  bridge:
+    external:
+      name: bridge

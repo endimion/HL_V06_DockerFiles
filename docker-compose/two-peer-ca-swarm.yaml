@@ -1,13 +1,13 @@
 version: '3'
 services:
-  baseimage:
-    build: ./baseimage
-    image: hyperledger/fabric-baseimage:latest
-    deploy:
-      mode: replicated
-      replicas: 1
-      restart_policy:
-          condition: none
+  # baseimage:
+  #   build: ./baseimage
+  #   image: hyperledger/fabric-baseimage:latest
+  #   deploy:
+  #     mode: replicated
+  #     replicas: 1
+  #     restart_policy:
+  #         condition: none
   membersrvc:
     image: ibmblockchain/fabric-membersrvc:${ARCH_TAG}
     ports:
@@ -43,11 +43,8 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
-      - CORE_PEER_ID=vp0
-      - CORE_SECURITY_ENROLLID=test_vp0
-      - CORE_SECURITY_ENROLLSECRET=MwYpmSRjupbT
-      - CORE_PEER_DISCOVERY_PERIOD=120s
-      - CORE_PEER_DISCOVERY_TOUCHPERIOD=120s
+      - CORE_PEER_DISCOVERY_PERIOD=240s
+      - CORE_PEER_DISCOVERY_TOUCHPERIOD=240s
       - CORE_PEER_ADDRESSAUTODETECT=true
       - CORE_VM_ENDPOINT=unix:///var/run/docker.sock
       - CORE_LOGGING_LEVEL=DEBUG
@@ -59,6 +56,9 @@ services:
       - CORE_PBFT_GENERAL_MODE=batch
       - CORE_PBFT_GENERAL_N=2
       - CORE_SECURITY_ATTRIBUTES_ENABLED=true
+      - CORE_PEER_ID=vp0
+      - CORE_SECURITY_ENROLLID=test_vp0
+      - CORE_SECURITY_ENROLLSECRET=MwYpmSRjupbT
     command: sh -c "sleep 25; peer node start"
     ports:
       - "7050:7050"
@@ -82,12 +82,9 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
-      - CORE_PEER_DISCOVERY_ROOTNODE=vp0:7051
-      - CORE_PEER_ID=vp1
-      - CORE_SECURITY_ENROLLID=test_vp1
       - CORE_SECURITY_ENROLLSECRET=5wgHK9qqYaPy
-      - CORE_PEER_DISCOVERY_PERIOD=120s
-      - CORE_PEER_DISCOVERY_TOUCHPERIOD=120s
+      - CORE_PEER_DISCOVERY_PERIOD=240s
+      - CORE_PEER_DISCOVERY_TOUCHPERIOD=240s
       - CORE_PEER_ADDRESSAUTODETECT=true
       - CORE_VM_ENDPOINT=unix:///var/run/docker.sock
       - CORE_LOGGING_LEVEL=DEBUG
@@ -99,6 +96,9 @@ services:
       - CORE_PBFT_GENERAL_MODE=batch
       - CORE_PBFT_GENERAL_N=2
       - CORE_SECURITY_ATTRIBUTES_ENABLED=true
+      - CORE_PEER_DISCOVERY_ROOTNODE=vp0:7051
+      - CORE_PEER_ID=vp1
+      - CORE_SECURITY_ENROLLID=test_vp1
     command: sh -c "sleep 25; peer node start"
     ports:
       - "8050:7050"
