@@ -26,9 +26,9 @@ services:
       - MEMBERSRVC_CA_LOGGING_TCAA=INFO
       - MEMBERSRVC_CA_LOGGING_TLSCA=INFO
       - MEMBERSRVC_CA_ACA_ENABLED=true
-    # networks:
-    #   #- default
-    #   - bridge
+    networks:
+      - default
+      - hldemo
     deploy:
       mode: replicated
       replicas: 1
@@ -66,9 +66,9 @@ services:
       - "7053:7053"
     depends_on:
       - membersrvc
-    # networks:
-    #   #- default
-    #   - bridge
+    networks:
+      - default
+      - hldemo
     deploy:
       mode: replicated
       replicas: 1
@@ -107,9 +107,9 @@ services:
     depends_on:
       - membersrvc
       - vp0
-    # networks:
-    #   #- default
-    #   - bridge
+    networks:
+      - default
+      - hldemo
     deploy:
       mode: replicated
       replicas: 1
@@ -155,7 +155,9 @@ services:
        constraints: [node.role == worker]
       restart_policy:
           condition: on-failure
-
+    networks:
+      - default
+      - hldemo
 
   vp3:
     image: ibmblockchain/fabric-peer:${ARCH_TAG}
@@ -194,7 +196,9 @@ services:
        constraints: [node.role == manager]
       restart_policy:
           condition: on-failure
-
+    networks:
+      - default
+      - hldemo
 
 
 
@@ -212,13 +216,13 @@ services:
     deploy:
       placement:
         constraints: [node.role == worker]
-#     networks:
-#       - bridge
+    networks:
+      - default
+      - hldemo
 #
 #
 #
 #
-# networks:
-#   bridge:
-#     external:
-#       name: bridge
+networks:
+  hldemo:
+    driver: overlay
