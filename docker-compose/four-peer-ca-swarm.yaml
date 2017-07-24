@@ -148,6 +148,7 @@ services:
     depends_on:
       - membersrvc
       - vp0
+      - vp1
     deploy:
       mode: replicated
       replicas: 1
@@ -189,6 +190,8 @@ services:
     depends_on:
       - membersrvc
       - vp0
+      - vp1
+      - vp2
     deploy:
       mode: replicated
       replicas: 1
