@@ -41,8 +41,6 @@ services:
 
   vp0:
     image: ibmblockchain/fabric-peer:${ARCH_TAG}
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
     hostname: vp0
     environment:
       # - CORE_PEER_DISCOVERY_PERIOD=60s
@@ -96,8 +94,6 @@ services:
 
   vp1:
     image: ibmblockchain/fabric-peer:${ARCH_TAG}
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
     hostname: vp1
     environment:
       # - CORE_PEER_DISCOVERY_PERIOD=60s
@@ -121,7 +117,7 @@ services:
       #
       - CORE_PEER_ADDRESSAUTODETECT=true
       - CORE_PEER_NETWORKID=dev
-      - CORE_LOGGING_LEVEL=debug  #critical, error, warning, notice, info, debug
+      - CORE_LOGGING_LEVEL=info  #critical, error, warning, notice, info, debug
       #- CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=fabric_noops  # uncomment this to use specific network
       # The following section enables pbft consensus
       - CORE_PEER_VALIDATOR_CONSENSUS_PLUGIN=noops  # noops, pbft
@@ -130,10 +126,14 @@ services:
     volumes: # docker.sock is mapped as the default CORE_VM_ENDPOINT
       - /var/run/docker.sock:/var/run/docker.sock
     command: sh -c "sleep 25; peer node start"
+    expose:
+      - "7051"
+      - "7052"
+      - "7053"
     ports:
-      - "8050:7050"
-      - "8051:7051"
-      - "8053:7053"
+      - "7050:7050"
+      - "7051:7051"
+      - "7053:7053"
     depends_on:
       - membersrvc
       - vp0
