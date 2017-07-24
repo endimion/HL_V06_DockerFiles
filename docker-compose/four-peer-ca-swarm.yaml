@@ -233,3 +233,4 @@ services:
 networks:
   hldemo:
     driver: overlay
+    attachable: true
