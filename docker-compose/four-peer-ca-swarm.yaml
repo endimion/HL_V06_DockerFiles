@@ -43,6 +43,7 @@ services:
     image: ibmblockchain/fabric-peer:${ARCH_TAG}
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+    hostname: vp0
     environment:
       - CORE_PEER_DISCOVERY_PERIOD=60s
       - CORE_PEER_DISCOVERY_TOUCHPERIOD=60s
@@ -85,6 +86,7 @@ services:
     image: ibmblockchain/fabric-peer:${ARCH_TAG}
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+    hostname: vp1
     environment:
       - CORE_PEER_DISCOVERY_PERIOD=60s
       - CORE_PEER_DISCOVERY_TOUCHPERIOD=60s
@@ -129,6 +131,7 @@ services:
   #   image: ibmblockchain/fabric-peer:${ARCH_TAG}
   #   volumes:
   #     - /var/run/docker.sock:/var/run/docker.sock
+      # hostname: vp2
   #   environment:
   #     - CORE_PEER_DISCOVERY_PERIOD=60s
   #     - CORE_PEER_DISCOVERY_TOUCHPERIOD=60s
