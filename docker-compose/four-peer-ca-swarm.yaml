@@ -73,6 +73,8 @@ services:
       - "7051"
       - "7052"
       - "7053"
+    volumes: # docker.sock is mapped as the default CORE_VM_ENDPOINT
+      - /var/run/docker.sock:/var/run/docker.sock
     command: sh -c "sleep 25; peer node start"
     ports:
       - "7050:7050"
@@ -125,6 +127,8 @@ services:
       - CORE_PEER_VALIDATOR_CONSENSUS_PLUGIN=noops  # noops, pbft
       - CORE_NOOPS_BLOCK_TIMEOUT=2s
       - CORE_NOOPS_BLOCK_WAIT=2s
+    volumes: # docker.sock is mapped as the default CORE_VM_ENDPOINT
+      - /var/run/docker.sock:/var/run/docker.sock
     command: sh -c "sleep 25; peer node start"
     ports:
       - "8050:7050"
