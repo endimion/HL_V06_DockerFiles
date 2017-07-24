@@ -29,6 +29,7 @@ services:
     networks:
       - default
       - hldemo
+      - hl
     deploy:
       mode: replicated
       replicas: 1
@@ -53,7 +54,7 @@ services:
       - CORE_PEER_PKI_TLSCA_PADDR=membersrvc:7054
       - CORE_SECURITY_ENABLED=true
       #
-      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=hldemo_default
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=hl
       # - CORE_PEER_VALIDATOR_CONSENSUS_PLUGIN=pbft
       # - CORE_PBFT_GENERAL_MODE=batch
       # - CORE_PBFT_GENERAL_N=4
@@ -71,6 +72,7 @@ services:
     networks:
       - default
       - hldemo
+      - hl
     deploy:
       mode: replicated
       replicas: 1
@@ -94,7 +96,7 @@ services:
       - CORE_PEER_PKI_TLSCA_PADDR=membersrvc:7054
       - CORE_SECURITY_ENABLED=true
       #
-      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=hldemo_default
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=hl
       # - CORE_PEER_VALIDATOR_CONSENSUS_PLUGIN=pbft
       # - CORE_PBFT_GENERAL_MODE=batch
       # - CORE_PBFT_GENERAL_N=4
@@ -114,6 +116,7 @@ services:
     networks:
       - default
       - hldemo
+      - hl
     deploy:
       mode: replicated
       replicas: 1
@@ -234,3 +237,5 @@ networks:
   hldemo:
     driver: overlay
     attachable: true
+  hl:
+    external: true
